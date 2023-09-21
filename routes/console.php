@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command('test', function () {
+    $user = \App\Models\User::query()->first();
+    $event = \App\Models\Event::query()->with('members', 'creator')->first();
+    dd($event->toArray());
+});
