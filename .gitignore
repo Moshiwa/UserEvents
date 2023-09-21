@@ -1,7 +1,12 @@
 /node_modules
 /public/hot
 /public/storage
+/public/vendor
+/storage/framework
+/storage/logs
 /storage/*.key
+/bootstrap/cache/services.php
+/bootstrap/cache/packages.php
 /vendor
 .env
 .env.backup
