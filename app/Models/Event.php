@@ -11,6 +11,8 @@ class Event extends Model
 
     public $timestamps = false;
 
+    protected $with = ['members', 'creator'];
+
     public $fillable = [
         'title',
         'text',
@@ -28,7 +30,7 @@ class Event extends Model
         return $this->belongsToMany(
             User::class,
             EventMember::class,
-            'member_id',
-            'event_id');
+            'event_id',
+            'member_id');
     }
 }

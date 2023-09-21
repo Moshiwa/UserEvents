@@ -290,7 +290,9 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
+        /*['header' => 'all_events'],*/
+
+       /* // Navbar items:
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
@@ -382,7 +384,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*

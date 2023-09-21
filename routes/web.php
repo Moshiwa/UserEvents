@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin_template');
+});
+
+Route::get('/event/{event}', function () {
+    return view('event');
+});
+
+Route::get('/user/{user}', function () {
+    return view('user');
 });

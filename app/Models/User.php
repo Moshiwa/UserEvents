@@ -14,6 +14,10 @@ class User extends Authenticatable
 
     public $timestamps = false;
 
+    public $appends = [
+        'full_name'
+    ];
+
     protected $fillable = [
         'login',
         'password',
@@ -30,5 +34,10 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasMany(Event::class, 'creator_id');
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->second_name;
     }
 }
