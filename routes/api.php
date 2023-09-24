@@ -21,5 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('event/{event}', [EventController::class, 'get']);
-Route::get('user/{user}', [UserController::class, 'get']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('event/{event}', [EventController::class, 'get']);
+    Route::get('event/my/{event}', [EventController::class, 'get']);
+    Route::get('event/my/{event}/remove', [EventController::class, 'remove']);
+    Route::get('event/{event}/participation', [EventController::class, 'participation']);
+    Route::get('event/{event}/cancel-participation', [EventController::class, 'cancelParticipation']);
+    Route::post('event', [EventController::class, 'create']);
+    Route::get('user/{user}', [UserController::class, 'get']);
+});

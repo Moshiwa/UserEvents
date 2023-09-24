@@ -24,9 +24,9 @@
         <form action="{{ $login_url }}" method="post">
         @csrf
 
-        {{-- Email field --}}
+        {{-- Login field --}}
         <div class="input-group mb-3">
-            <input type="text" name="login" class="form-control @error('login') is-invalid @enderror"
+            <input type="text" name="login" id="login" class="form-control @error('login') is-invalid @enderror"
                    value="{{ old('login') }}" placeholder="{{ __('adminlte::adminlte.login') }}" autofocus>
 
             <div class="input-group-append">
@@ -44,7 +44,7 @@
 
         {{-- Password field --}}
         <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+            <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror"
                    placeholder="{{ __('adminlte::adminlte.password') }}">
 
             <div class="input-group-append">
@@ -73,7 +73,7 @@
             </div>
 
             <div class="col-5">
-                <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                <button id="send-button" type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
                     <span class="fas fa-sign-in-alt"></span>
                     {{ __('adminlte::adminlte.sign_in') }}
                 </button>

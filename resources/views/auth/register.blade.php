@@ -19,8 +19,8 @@
 
         {{-- Name field --}}
         <div class="input-group mb-3">
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                   value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
+            <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
+                   value="{{ old('first_name') }}" placeholder="{{ __('adminlte::adminlte.first_name') }}" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -28,7 +28,24 @@
                 </div>
             </div>
 
-            @error('name')
+            @error('first_name')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        {{-- Name field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="second_name" class="form-control @error('second_name') is-invalid @enderror"
+                   value="{{ old('second_name') }}" placeholder="{{ __('adminlte::adminlte.second_name') }}" autofocus>
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+
+            @error('second_name')
             <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -37,20 +54,14 @@
 
         {{-- Email field --}}
         <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}">
+            <input type="login" name="login" class="form-control @error('login') is-invalid @enderror"
+                   value="{{ old('login') }}" placeholder="{{ __('adminlte::adminlte.login') }}">
 
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
                 </div>
             </div>
-
-            @error('email')
-            <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
         </div>
 
         {{-- Password field --}}

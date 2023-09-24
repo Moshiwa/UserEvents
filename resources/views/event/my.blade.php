@@ -15,6 +15,9 @@
         <h2>Участники</h2>
         <div class="list"></div>
     </div>
+    <div class="actions">
+        <button id="delete">Удалить событие</button>
+    </div>
 @stop
 
 @section('css')
@@ -67,6 +70,7 @@
         }
 
         async function getData(url = "",) {
+            let token = localStorage.getItem('Token');
             const response = await fetch(url, {
                 method: "GET",
                 mode: "cors",
@@ -74,6 +78,7 @@
                 credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
                 },
                 redirect: "follow",
                 referrerPolicy: "no-referrer",
@@ -81,5 +86,15 @@
 
             return response.json();
         }
+
+        let deleteButton = document.getElementById('delete');
+        deleteButton.addEventListener("click", async (event) => {
+            let response = await getData('/api' + window.location.pathname + '/remove', {});
+            if (response.error) {
+                alert(response.error);
+            } else {
+            }
+        });
+
     </script>
 @stop

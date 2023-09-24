@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('text');
-            $table->date('date_creation');
+            $table->timestamp('date_creation');
             $table->foreignId('creator_id')
                 ->constrained('users')
                 ->cascadeOnDelete();

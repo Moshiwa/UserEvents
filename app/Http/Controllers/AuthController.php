@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -18,7 +19,13 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            $user = Auth::user();
+
+            $token = $user->createToken('MyApp')->plainTextToken;
+            $user->token = $token;
+            $user->save();
+
+            return redirect()->intended('/')->with(['Auth' => $token]);
         }
 
         return redirect('register');
@@ -32,11 +39,15 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        User::query()->create([
+
+        $user = User::query()->create([
             'first_name' => $request->first_name,
             'second_name' => $request->second_name,
             'login' => $request->login,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'registration_date' => now()
         ]);
+
+        return redirect('login');
     }
 }

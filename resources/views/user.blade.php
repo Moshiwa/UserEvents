@@ -58,6 +58,7 @@
         }
 
         async function getData(url = "",) {
+            let token = localStorage.getItem('Token');
             const response = await fetch(url, {
                 method: "GET",
                 mode: "cors",
@@ -65,6 +66,7 @@
                 credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
                 },
                 redirect: "follow",
                 referrerPolicy: "no-referrer",

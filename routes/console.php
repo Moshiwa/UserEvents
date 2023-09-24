@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Event;
+use App\Models\EventMember;
 use App\Models\User;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -19,15 +21,34 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Artisan::command('test', function () {
-    User::query()->create([
-        'first_name' => 'etet',
-        'second_name' => 'wef',
-        'login' => 'admin',
-        'registration_date' => '2023-12-12',
+Artisan::command('user:create {login}', function ($login) {
+    $user = User::query()->create([
+        'first_name' => 'test',
+        'second_name' => 'test',
+        'login' => $login,
+        'registration_date' => now(),
         'password' => bcrypt('admin')
     ]);
-    $user = \App\Models\User::query()->first();
-    $event = \App\Models\Event::query()->with('members', 'creator')->first();
-    dd($event->members->toArray());
+
+    dump($user->createToken('MyApp')->plainTextToken);
+});
+
+Artisan::command('event:create {userId}', function ($userId) {
+    $event = Event::query()->create([
+        'title' => 'test',
+        'text' => 'test',
+        'date_creation' => now(),
+        'creator_id' => $userId
+    ]);
+
+    dump($event->id);
+});
+
+Artisan::command('event:add-members {eventId} {userId}', function ($eventId, $userId) {
+    $eventMember = EventMember::query()->create([
+        'event_id' => $eventId,
+        'member_id' => $userId
+    ]);
+
+    dump($eventMember->id);
 });

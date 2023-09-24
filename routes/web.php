@@ -20,7 +20,15 @@ Route::get('/', function () {
 })->middleware('auth:sanctum');
 
 Route::get('/event/{event}', function () {
-    return view('event');
+    return view('event.index');
+})->middleware('auth:sanctum');
+
+Route::get('/event/my/{event}', function () {
+    return view('event.my');
+})->middleware('auth:sanctum');
+
+Route::get('/event', function () {
+    return view('event.create');
 })->middleware('auth:sanctum');
 
 Route::get('/user/{user}', function () {

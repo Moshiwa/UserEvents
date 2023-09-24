@@ -1,3 +1,6 @@
+<?php
+$authToken = Session::get('Auth');
+?>
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -15,5 +18,8 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        var token = "{{$authToken}}";
+        localStorage.setItem('Token', token);
+    </script>
 @stop
